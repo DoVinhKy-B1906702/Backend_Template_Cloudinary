@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const infoSchema = new Schema({
     name: {
         type: String,
-        require: true
+        require: true,
     },
     phone: {
         type: String,
@@ -19,13 +19,20 @@ const infoSchema = new Schema({
     birthday: Date,
     img: {
         type: String,
-       
+        default: "https://res.cloudinary.com/dkzebfbq2/image/upload/v1667321172/avatardefault_zo3shv.png"
+    },
+    cash:{
+        type: Number,
+        default: 0
     },
     gender: {
         type:Boolean,
         default: true
     },
     cloudinary_id :{type:String},
+    user: {
+        type: Schema.Types.ObjectId, ref: 'users' 
+   }
 }, {timestamps: true})
 
 module.exports = mongoose.model('info', infoSchema);

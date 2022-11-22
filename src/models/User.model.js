@@ -18,10 +18,6 @@ const UserSchema = mongoose.Schema({
         unique:true,
         required: true
     },
-    cash:{
-        type: Number,
-        default: 0
-    },
     password: {type: String, required: true, minlength: 8,},
     admin:{
         type: Boolean,
@@ -30,4 +26,4 @@ const UserSchema = mongoose.Schema({
 }, {timestamps: true});
 
 
-module.exports = mongoose.model('user', UserSchema);
+module.exports = mongoose.model('users', UserSchema);

@@ -2,17 +2,35 @@ POST http://localhost:5000/auth/register
 Content-Type: application/json
 
 {
-    "username": "vinhky2012",
-    "password": "vinhky2012",
-    "email": "vinhky2012@gmail.com",
-    "phone": "0982145161"
+    "username": "vinhky2082",
+    "password": "vinhky2082",
+    "email": "vinhky2082@gmail.com",
+    "phone": "0982145313"
 }
 ###
 POST http://localhost:5000/auth/login
 Content-Type: application/json
 
 {
-    "username": "vinhky2012",
-    "password": "vinhky2012"
+    "username": "vinhky2081",
+    "password": "vinhky2081"
 }
+
+###
+PUT http://localhost:5000/info/637d2232bcef72170a61ca2a
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzdkMjIzMmJjZWY3MjE3MGE2MWNhMjgiLCJpYXQiOjE2NjkxNDY0OTh9.1rgGsk2VAyhk1VCcaGUX29mag-FBkTtnSXLHH76YGSg
+
+{
+    "gender": false
+}
+###
+PUT http://localhost:5000/info/cash/637d2232bcef72170a61ca2a
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzdkMjIzMmJjZWY3MjE3MGE2MWNhMjgiLCJpYXQiOjE2NjkxNDY0OTh9.1rgGsk2VAyhk1VCcaGUX29mag-FBkTtnSXLHH76YGSg
+
+{
+    "cash": 50
+}
+
 

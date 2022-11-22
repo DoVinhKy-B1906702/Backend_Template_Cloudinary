@@ -2,7 +2,7 @@ const argon2 = require('argon2')
 const jwt = require('jsonwebtoken');
 
 const User = require('../models/User.model');
-
+const Info = require('../models/privateInfo.model')
 
 const dotenv = require('dotenv');
 
@@ -38,11 +38,22 @@ exports.register = async (req, res, next) => {
             email,
             phone
         })
-        await newUser.save();
 
+        
+        await newUser.save();
+       
         // Return token
         const secret = process.env.ACCESS_TOKEN_SECRECT
         const accessToken = jwt.sign({userId: newUser._id},secret )
+
+        const infoUser = new Info({
+            
+            name:username,
+            email,
+            phone,
+            user: newUser._id
+        })
+        await infoUser.save();
 
         res.status(200).json({success: true, message:'User has created successfully', accessToken})
     } catch (error) {
@@ -52,7 +63,7 @@ exports.register = async (req, res, next) => {
 }
 
 exports.login = async (req, res, next) => {
-    const {username, password, email} = req.body;
+    const {username, password} = req.body;
 
     // simple validation
     if (!username || !password)
@@ -61,7 +72,7 @@ exports.login = async (req, res, next) => {
     try {
         // Check for exiting user
         const user = await User.findOne({username});
-        const emailUser = await User.findOne({email});
+       
         if (!user ) {
             return res.status(400).json({success: false, message: 'Incorrect username/email or password'});
         }
