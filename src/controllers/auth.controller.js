@@ -19,11 +19,12 @@ exports.register = async (req, res, next) => {
     try {
         // Check for exiting user
         const user = await User.findOne({username});
-        const phoneUser = await User.findOne({phone});
-        const emailUser = await User.findOne({email});
+        const phoneUser = await Info.findOne({phone});
+        const emailUser = await Info.findOne({email});
         if (user) {
             return res.status(400).json({success: false, message :'Username already exited'});
-        } else if (phoneUser) {
+        } 
+        else if (phoneUser) {
             return res.status(400).json({success: false, message :'Phone already exited'});
         } else if (emailUser) {
             return res.status(400).json({success: false, message :'Email already exited'});
@@ -35,8 +36,6 @@ exports.register = async (req, res, next) => {
         const newUser = new User({
             username,
             password: hashedPassword,
-            email,
-            phone
         })
 
         

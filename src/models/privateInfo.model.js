@@ -8,7 +8,9 @@ const infoSchema = new Schema({
     },
     phone: {
         type: String,
-        require: true
+        match: /((09|03|07|08|05)+([0-9]{8})\b)/g,
+        unique:true,
+        required: true
     },
     email: {
         type: String,
